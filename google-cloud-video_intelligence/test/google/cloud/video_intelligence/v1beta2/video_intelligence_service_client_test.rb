@@ -53,7 +53,7 @@ class MockGrpcClientStub
   end
 end
 
-class MockCredentialsClass < Google::Cloud::VideoIntelligence::Credentials
+class MockVideoIntelligenceServiceCredentials < Google::Cloud::VideoIntelligence::Credentials
   def initialize(method_name)
     @method_name = method_name
   end
@@ -90,7 +90,7 @@ describe Google::Cloud::VideoIntelligence::V1beta2::VideoIntelligenceServiceClie
       mock_stub = MockGrpcClientStub.new(:annotate_video, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("annotate_video")
+      mock_credentials = MockVideoIntelligenceServiceCredentials.new("annotate_video")
 
       Google::Cloud::Videointelligence::V1beta2::VideoIntelligenceService::Stub.stub(:new, mock_stub) do
         Google::Cloud::VideoIntelligence::Credentials.stub(:default, mock_credentials) do
@@ -123,7 +123,7 @@ describe Google::Cloud::VideoIntelligence::V1beta2::VideoIntelligenceServiceClie
       mock_stub = MockGrpcClientStub.new(:annotate_video, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("annotate_video")
+      mock_credentials = MockVideoIntelligenceServiceCredentials.new("annotate_video")
 
       Google::Cloud::Videointelligence::V1beta2::VideoIntelligenceService::Stub.stub(:new, mock_stub) do
         Google::Cloud::VideoIntelligence::Credentials.stub(:default, mock_credentials) do
@@ -147,7 +147,7 @@ describe Google::Cloud::VideoIntelligence::V1beta2::VideoIntelligenceServiceClie
       mock_stub = MockGrpcClientStub.new(:annotate_video, mock_method)
 
       # Mock auth layer
-      mock_credentials = MockCredentialsClass.new("annotate_video")
+      mock_credentials = MockVideoIntelligenceServiceCredentials.new("annotate_video")
 
       Google::Cloud::Videointelligence::V1beta2::VideoIntelligenceService::Stub.stub(:new, mock_stub) do
         Google::Cloud::VideoIntelligence::Credentials.stub(:default, mock_credentials) do
