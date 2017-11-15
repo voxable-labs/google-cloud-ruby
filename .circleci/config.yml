@@ -1,0 +1,62 @@
+---
+  version: 2.0
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - bigquery-ruby2.2:
+          filters:
+            tags:
+              only: /^bigquery-.*/
+      - bigquery-ruby2.3:
+          filters:
+            tags:
+              only: /^bigquery-.*/
+      - bigquery-ruby2.4:
+          filters:
+            tags:
+              only: /^bigquery-.*/
+      - bigquery-publish:
+          requires:
+            - bigquery-ruby-2.2
+            - bigquery-ruby-2.3
+            - bigquery-ruby-2.4
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^bigquery-[\d.]+$/
+
+jobs:
+  bigquery-ruby-2.2:
+    docker:
+      - image: ruby:2.2
+    steps:
+      - checkout
+      - run:
+          name: Run the tests.
+          command: bundle exec rake circleci:build
+  bigquery-ruby-2.3:
+    docker:
+      - image: ruby:2.3
+    steps:
+      - checkout
+      - run:
+          name: Run the tests.
+          command: bundle exec rake circleci:build
+  bigquery-ruby-2.4:
+    docker:
+      - image: ruby:2.4
+    steps:
+      - checkout
+      - run:
+          name: Run the tests.
+          command: bundle exec rake circleci:build
+  bigquery-publish:
+    docker:
+      - image: ruby:2.4
+    steps:
+      - checkout
+      - run:
+          name: Publish the BigQuery library.
+          command: echo "Put in the right thing here."
