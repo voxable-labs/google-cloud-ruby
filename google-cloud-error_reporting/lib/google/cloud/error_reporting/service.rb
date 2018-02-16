@@ -84,7 +84,7 @@ module Google
         protected
 
         def project_path
-          V1beta1::ReportErrorsServiceClient.project_path project
+          "projects/#{project}"
         end
 
         def execute

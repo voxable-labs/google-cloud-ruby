@@ -944,9 +944,7 @@ module Google
         def create_new_session
           ensure_service!
           grpc = @project.service.create_session \
-            Admin::Database::V1::DatabaseAdminClient.database_path(
-              project_id, instance_id, database_id
-            )
+            @project.service.database_path(instance_id, database_id)
           Session.from_grpc(grpc, @project.service)
         end
 

@@ -471,10 +471,7 @@ module Google
         end
 
         def instance_config_path name
-          return name if name.to_s.include? "/"
-          Admin::Instance::V1::InstanceAdminClient.instance_config_path(
-            project, name.to_s
-          )
+          service.instance_config_path name
         end
       end
     end

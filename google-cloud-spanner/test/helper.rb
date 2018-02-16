@@ -119,29 +119,27 @@ class MockSpanner < Minitest::Spec
   end
 
   def project_path
-    Google::Cloud::Spanner::Admin::Instance::V1::InstanceAdminClient.project_path project
+    "projects/#{project}"
   end
 
   def instance_path name
     return name if name.to_s.include? "/"
-    Google::Cloud::Spanner::Admin::Instance::V1::InstanceAdminClient.instance_path(
-      project, name)
-  end
-
-  def database_path instance, name
-    Google::Cloud::Spanner::Admin::Database::V1::DatabaseAdminClient.database_path(
-      project, instance, name)
+    "projects/#{project}/instances/#{name}"
   end
 
   def instance_config_path name
     return name if name.to_s.include? "/"
-    Google::Cloud::Spanner::Admin::Instance::V1::InstanceAdminClient.instance_config_path(
-      project, name)
+    "projects/#{project}/instanceConfigs/#{name}"
+  end
+
+  def database_path instance_id, database_id
+    "projects/#{project}/instances/#{instance_id}" \
+      "/databases/#{database_id}"
   end
 
   def session_path instance_id, database_id, session_id
-    Google::Cloud::Spanner::V1::SpannerClient.session_path(
-      project, instance_id, database_id, session_id)
+    "projects/#{project}/instances/#{instance_id}" \
+      "/databases/#{database_id}/sessions/#{session_id}"
   end
 
   def paged_enum_struct response

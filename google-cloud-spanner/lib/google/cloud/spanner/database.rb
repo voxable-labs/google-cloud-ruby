@@ -370,9 +370,7 @@ module Google
         end
 
         def session_path instance_id, database_id, session_id
-          V1::SpannerClient.session_path(
-            project_id, instance_id, database_id, session_id
-          )
+          service.session_path instance_id, database_id, session_id
         end
       end
     end

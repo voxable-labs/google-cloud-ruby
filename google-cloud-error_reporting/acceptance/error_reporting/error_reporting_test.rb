@@ -31,7 +31,7 @@ describe Google::Cloud::ErrorReporting, :error_reporting do
 
     # Query for error group
     project_id = Google::Cloud::ErrorReporting.send(:default_client).error_reporting.project
-    formatted_project = Google::Cloud::ErrorReporting::V1beta1::ErrorStatsServiceClient.project_path project_id
+    formatted_project = "projects/#{project_id}"
     v1beta1 = Google::Devtools::Clouderrorreporting::V1beta1
     time_range = v1beta1::QueryTimeRange.new period: v1beta1::QueryTimeRange::Period::PERIOD_1_HOUR
     sort_order = v1beta1::ErrorGroupOrder::LAST_SEEN_DESC

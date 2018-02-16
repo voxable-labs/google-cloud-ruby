@@ -467,9 +467,7 @@ module Google
         end
 
         def database_path instance_id, database_id
-          Admin::Database::V1::DatabaseAdminClient.database_path(
-            project, instance_id, database_id
-          )
+          service.database_path instance_id, database_id
         end
 
         def valid_session_pool_options opts = {}

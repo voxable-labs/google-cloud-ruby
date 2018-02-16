@@ -340,6 +340,30 @@ module Google
           end
         end
 
+        def project_path
+          "projects/#{project}"
+        end
+
+        def instance_path name
+          return name if name.to_s.include? "/"
+          "projects/#{project}/instances/#{name}"
+        end
+
+        def instance_config_path name
+          return name if name.to_s.include? "/"
+          "projects/#{project}/instanceConfigs/#{name}"
+        end
+
+        def database_path instance_id, database_id
+          "projects/#{project}/instances/#{instance_id}" \
+            "/databases/#{database_id}"
+        end
+
+        def session_path instance_id, database_id, session_id
+          "projects/#{project}/instances/#{instance_id}" \
+            "/databases/#{database_id}/sessions/#{session_id}"
+        end
+
         def inspect
           "#{self.class}(#{@project})"
         end
@@ -375,36 +399,6 @@ module Google
           default_prefix = session_name.split("/sessions/").first
           Google::Gax::CallOptions.new kwargs: \
             { "google-cloud-resource-prefix" => default_prefix }
-        end
-
-        def project_path
-          Admin::Instance::V1::InstanceAdminClient.project_path project
-        end
-
-        def instance_path name
-          return name if name.to_s.include? "/"
-          Admin::Instance::V1::InstanceAdminClient.instance_path(
-            project, name
-          )
-        end
-
-        def instance_config_path name
-          return name if name.to_s.include? "/"
-          Admin::Instance::V1::InstanceAdminClient.instance_config_path(
-            project, name.to_s
-          )
-        end
-
-        def database_path instance_id, database_id
-          Admin::Database::V1::DatabaseAdminClient.database_path(
-            project, instance_id, database_id
-          )
-        end
-
-        def session_path instance_id, database_id, session_id
-          V1::SpannerClient.session_path(
-            project, instance_id, database_id, session_id
-          )
         end
 
         def execute
