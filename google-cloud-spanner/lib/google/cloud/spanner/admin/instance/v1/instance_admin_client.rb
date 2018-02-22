@@ -97,31 +97,11 @@ module Google
                 SERVICE_ADDRESS = SERVICE_ADDRESS
               end
 
-              PROJECT_PATH_TEMPLATE = Google::Gax::PathTemplate.new(
-                "projects/{project}"
-              )
-
-              private_constant :PROJECT_PATH_TEMPLATE
-
-              INSTANCE_CONFIG_PATH_TEMPLATE = Google::Gax::PathTemplate.new(
-                "projects/{project}/instanceConfigs/{instance_config}"
-              )
-
-              private_constant :INSTANCE_CONFIG_PATH_TEMPLATE
-
-              INSTANCE_PATH_TEMPLATE = Google::Gax::PathTemplate.new(
-                "projects/{project}/instances/{instance}"
-              )
-
-              private_constant :INSTANCE_PATH_TEMPLATE
-
               # Returns a fully-qualified project resource name string.
               # @param project [String]
               # @return [String]
               def self.project_path project
-                PROJECT_PATH_TEMPLATE.render(
-                  :"project" => project
-                )
+                "projects/#{project}"
               end
 
               # Returns a fully-qualified instance_config resource name string.
@@ -129,10 +109,7 @@ module Google
               # @param instance_config [String]
               # @return [String]
               def self.instance_config_path project, instance_config
-                INSTANCE_CONFIG_PATH_TEMPLATE.render(
-                  :"project" => project,
-                  :"instance_config" => instance_config
-                )
+                "projects/#{project}/instanceConfigs/#{instance_config}"
               end
 
               # Returns a fully-qualified instance resource name string.
@@ -140,10 +117,7 @@ module Google
               # @param instance [String]
               # @return [String]
               def self.instance_path project, instance
-                INSTANCE_PATH_TEMPLATE.render(
-                  :"project" => project,
-                  :"instance" => instance
-                )
+                "projects/#{project}/instances/#{instance}"
               end
 
               # @param credentials [Google::Auth::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]

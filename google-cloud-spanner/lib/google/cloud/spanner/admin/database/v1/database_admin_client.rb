@@ -77,27 +77,12 @@ module Google
                 SERVICE_ADDRESS = SERVICE_ADDRESS
               end
 
-              INSTANCE_PATH_TEMPLATE = Google::Gax::PathTemplate.new(
-                "projects/{project}/instances/{instance}"
-              )
-
-              private_constant :INSTANCE_PATH_TEMPLATE
-
-              DATABASE_PATH_TEMPLATE = Google::Gax::PathTemplate.new(
-                "projects/{project}/instances/{instance}/databases/{database}"
-              )
-
-              private_constant :DATABASE_PATH_TEMPLATE
-
               # Returns a fully-qualified instance resource name string.
               # @param project [String]
               # @param instance [String]
               # @return [String]
               def self.instance_path project, instance
-                INSTANCE_PATH_TEMPLATE.render(
-                  :"project" => project,
-                  :"instance" => instance
-                )
+                "projects/#{project}/instances/#{instance}"
               end
 
               # Returns a fully-qualified database resource name string.
@@ -106,11 +91,7 @@ module Google
               # @param database [String]
               # @return [String]
               def self.database_path project, instance, database
-                DATABASE_PATH_TEMPLATE.render(
-                  :"project" => project,
-                  :"instance" => instance,
-                  :"database" => database
-                )
+                "projects/#{project}/instances/#{instance}/databases/#{database}"
               end
 
               # @param credentials [Google::Auth::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]

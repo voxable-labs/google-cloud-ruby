@@ -68,29 +68,13 @@ module Google
             "https://www.googleapis.com/auth/spanner.data"
           ].freeze
 
-          DATABASE_PATH_TEMPLATE = Google::Gax::PathTemplate.new(
-            "projects/{project}/instances/{instance}/databases/{database}"
-          )
-
-          private_constant :DATABASE_PATH_TEMPLATE
-
-          SESSION_PATH_TEMPLATE = Google::Gax::PathTemplate.new(
-            "projects/{project}/instances/{instance}/databases/{database}/sessions/{session}"
-          )
-
-          private_constant :SESSION_PATH_TEMPLATE
-
           # Returns a fully-qualified database resource name string.
           # @param project [String]
           # @param instance [String]
           # @param database [String]
           # @return [String]
           def self.database_path project, instance, database
-            DATABASE_PATH_TEMPLATE.render(
-              :"project" => project,
-              :"instance" => instance,
-              :"database" => database
-            )
+            "projects/#{project}/instances/#{instance}/databases/#{database}"
           end
 
           # Returns a fully-qualified session resource name string.
@@ -100,12 +84,7 @@ module Google
           # @param session [String]
           # @return [String]
           def self.session_path project, instance, database, session
-            SESSION_PATH_TEMPLATE.render(
-              :"project" => project,
-              :"instance" => instance,
-              :"database" => database,
-              :"session" => session
-            )
+            "projects/#{project}/instances/#{instance}/databases/#{database}/sessions/#{session}"
           end
 
           # @param credentials [Google::Auth::Credentials, String, Hash, GRPC::Core::Channel, GRPC::Core::ChannelCredentials, Proc]
