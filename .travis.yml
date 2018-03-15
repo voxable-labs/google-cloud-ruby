@@ -8,16 +8,50 @@ rvm:
 - 2.3.6
 - 2.2.9
 - 2.1.10
+env:
+- TRAVIS_BUILD_GEM=gcloud
+- TRAVIS_BUILD_GEM=google-cloud
+- TRAVIS_BUILD_GEM=google-cloud-bigquery
+- TRAVIS_BUILD_GEM=google-cloud-bigquery-data_transfer
+- TRAVIS_BUILD_GEM=google-cloud-bigtable
+- TRAVIS_BUILD_GEM=google-cloud-container
+- TRAVIS_BUILD_GEM=google-cloud-core
+- TRAVIS_BUILD_GEM=google-cloud-dataproc
+- TRAVIS_BUILD_GEM=google-cloud-datastore
+- TRAVIS_BUILD_GEM=google-cloud-debugger
+- TRAVIS_BUILD_GEM=google-cloud-dlp
+- TRAVIS_BUILD_GEM=google-cloud-dns
+- TRAVIS_BUILD_GEM=google-cloud-env
+- TRAVIS_BUILD_GEM=google-cloud-error_reporting
+- TRAVIS_BUILD_GEM=google-cloud-firestore
+- TRAVIS_BUILD_GEM=google-cloud-language
+- TRAVIS_BUILD_GEM=google-cloud-logging
+- TRAVIS_BUILD_GEM=google-cloud-monitoring
+- TRAVIS_BUILD_GEM=google-cloud-os_login
+- TRAVIS_BUILD_GEM=google-cloud-pubsub
+- TRAVIS_BUILD_GEM=google-cloud-resource_manager
+- TRAVIS_BUILD_GEM=google-cloud-spanner
+- TRAVIS_BUILD_GEM=google-cloud-speech
+- TRAVIS_BUILD_GEM=google-cloud-storage
+- TRAVIS_BUILD_GEM=google-cloud-trace
+- TRAVIS_BUILD_GEM=google-cloud-translate
+- TRAVIS_BUILD_GEM=google-cloud-video_intelligence
+- TRAVIS_BUILD_GEM=google-cloud-vision
+- TRAVIS_BUILD_GEM=stackdriver
+- TRAVIS_BUILD_GEM=stackdriver-core
 matrix:
   allow_failures:
   - rvm: 2.5.0
+    env: TRAVIS_BUILD_GEM=google-cloud-spanner
 branches:
   except:
   - gh-pages
   - /\/v\d/
 script:
 - gem install bundler
-- bundle exec rake travis:build
+- cd $TRAVIS_BUILD_GEM
+- BUNDLE_GEMFILE=./Gemfile bundle install
+- BUNDLE_GEMFILE=./Gemfile bundle exec rake ci
 notifications:
   slack:
     secure: Ksji5MDNOWnuzuyu9Hblbxse6kGLdH4kXyYkF98C+wawIGLSONWWkuA65wpdqSLtBN/79RCLMWoBzKAGX4xy9BL6Rxb3rLjAMT+FVur6II2yaApzyJ0dmTVeTXnkchPcrO27FK5taPb0Ghr86DUiG3OViY/q1N0AVALDYce5tfE=
