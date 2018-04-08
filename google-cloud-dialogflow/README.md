@@ -23,13 +23,14 @@ $ gem install google-cloud-dialogflow
 ### Preview
 #### DetectIntent
 ```rb
-project_id = "Your Google Cloud project ID"
-
 require "google/cloud/dialogflow"
+
+project_id = 'Your Google Cloud project ID'
+session_id = SecureRandom.uuid
 
 dialogflow_client = Google::Cloud::Dialogflow::Sessions.new
 response = dialogflow_client.detect_intent(
-  "projects/#{project_id}/agent/sessions/quickstart",
+  "projects/#{project_id}/agent/sessions/#{session_id}",
   text: Google::Cloud::Dialogflow::V2beta1::TextInput.new(
     text: 'this is a test',
     language_code: 'en-US'
