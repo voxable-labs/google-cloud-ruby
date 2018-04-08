@@ -18,10 +18,10 @@ require "google/cloud/dialogflow/v2beta1/entity_types_client"
 require "google/cloud/dialogflow/v2beta1/intents_client"
 require "google/cloud/dialogflow/v2beta1/session_entity_types_client"
 require "google/cloud/dialogflow/v2beta1/sessions_client"
-require "google/cloud/dialogflow/v2beta1/google/cloud/dialogflow/v2beta1/intent_pb"
-require "google/cloud/dialogflow/v2beta1/google/cloud/dialogflow/v2beta1/agent_pb"
-require "google/cloud/dialogflow/v2beta1/google/cloud/dialogflow/v2beta1/entity_type_pb"
-require "google/cloud/dialogflow/v2beta1/google/cloud/dialogflow/v2beta1/webhook_pb"
+require "google/cloud/dialogflow/v2beta1/intent_pb"
+require "google/cloud/dialogflow/v2beta1/agent_pb"
+require "google/cloud/dialogflow/v2beta1/entity_type_pb"
+require "google/cloud/dialogflow/v2beta1/webhook_pb"
 
 module Google
   module Cloud
